@@ -1,12 +1,18 @@
 const express = require('express')   //naming variables basically
 const app = express()  
 const port = 3000 
+var bodyParser = require('body-parser')
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 var AllRestaurants = [
 
 {
 	"name": "Juan's Flying Burrito",
-	"hunger": 6,
+	"hunger": 1,
 	"price": 1,
 	"alcohol": true,
 	"carryout": true,
@@ -16,7 +22,7 @@ var AllRestaurants = [
 
 {
 	"name": "Turkey and the Wolf",
-	"hunger": 5,
+	"hunger": 2,
 	"price": 2,
 	"alcohol": true,
 	"carryout": true,
@@ -26,7 +32,7 @@ var AllRestaurants = [
 
 {
 	"name": "Kin",
-	"hunger": 4,
+	"hunger": 3,
 	"price": 3,
 	"alcohol": false,
 	"carryout": false,
@@ -36,7 +42,7 @@ var AllRestaurants = [
 
 {
 	"name": "Shaya",
-	"hunger": 3,
+	"hunger": 4,
 	"price": 4,
 	"alcohol": true,
 	"carryout": true,
@@ -46,7 +52,7 @@ var AllRestaurants = [
 
 {
 	"name": "Lilette",
-	"hunger": 2,
+	"hunger": 5,
 	"price": 5,
 	"alcohol": true,
 	"carryout": false,
@@ -56,7 +62,7 @@ var AllRestaurants = [
 
 {
 	"name": "August",
-	"hunger": 1,
+	"hunger": 6,
 	"price": 6,
 	"alcohol": true,
 	"carryout": false,
@@ -77,23 +83,23 @@ app.get('/get-AllRestaurants', function(request, response) {
   response.send(AllRestaurants);
 });
 
-var userData = {
-	fancy: 6,
-	hunger: 1,
-	price: 6,
-	alcohol: true,
-	carryout: true,
-}
+// var userData = {
+
+// 	alcohol: true,
+	
+// }
 
 app.post ('/get-userData', function(request, response) {
-
-	response.send(userData);
-
+	console.log("route getting hit");
 	console.log(request.body);
-}
+	console.log(AllRestaurants.name);
+	response.send("Yay");
 
 
-	)
+});
+
+
+
 
 
 
