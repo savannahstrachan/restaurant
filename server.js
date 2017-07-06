@@ -71,6 +71,7 @@ var AllRestaurants = [
 }
 ];
 
+
 app.listen(port, function(err) {  
   if (err) {
     return console.log('something bad happened', err)
@@ -79,24 +80,71 @@ app.listen(port, function(err) {
   console.log(`Magic is happening on ${port}`)
 });
 
-app.get('/get-AllRestaurants', function(request, response) {  
-  response.send(AllRestaurants);
-});
 
-// var userData = {
+var userData;
 
-// 	alcohol: true,
+//prints elements from the request object!
+
+app.post ('/get-userData', function (request, response) {
+
+	userData = request.body;
+
+	for(i=0; i<AllRestaurants.length; i++){
+
+	if(AllRestaurants[i].price == userData.price){
+		
+		response.send(AllRestaurants[i])
+		console.log(AllRestaurants[i])
+
+	}
+
+}
+}
+);
+
+	// console.log(userData);
+	// response.send(userData);
+
+
 	
-// }
-
-app.post ('/get-userData', function(request, response) {
-	console.log("route getting hit");
-	console.log(request.body);
-	console.log(AllRestaurants.name);
-	response.send("Yay");
 
 
-});
+
+
+
+
+
+	// 
+
+	// 
+
+
+	// };
+
+	// response.send(AllRestaurants);
+// ;
+	// AllRestaurants.push(request.body);
+	// response.send(AllRestaurants[i].name);
+
+
+
+// console.log(AllRestaurants);
+
+
+// 	var match = AllRestaurants.filter(function(AllRestaurants){
+//   return AllRestaurants.hunger == 1;
+//   response.send(match);
+// });
+
+
+
+// app.post ('/get-userData', function(request, response) {
+// 	console.log("route getting hit");
+// 	console.log(request.body);
+	
+
+
+// });
 
 
 
