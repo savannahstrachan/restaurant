@@ -24,8 +24,8 @@ else console.log ('mongo connected')
 
 });
 
-var url = "localhost:3000"; // local
-//var url - "mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com:53732/heroku_xqz0gvn1" // dev
+//var url = "localhost:3000"; // local
+var url = "https//:restaurant-db-test.herokuapp.com/" // dev
 
 var RSchema = new mongoose.Schema ({
 	name: String,
