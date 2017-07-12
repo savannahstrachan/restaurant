@@ -8,12 +8,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.listen(port, function(err) {  
+app.listen(process.env.PORT || 3000, function(err) {  // this is changed-- Heroku knows what
+	// to put in there. fallback is whatever is past ||.
   if (err) {
     return console.log('something bad happened', err)
   }
 
-  console.log(`Magic is happening on ${port}`)
+  console.log(`Magic is happening on ${process.env.PORT}`)
 });
 
 mongoose.connect('mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com:53732/heroku_xqz0gvn1', function(error){
@@ -21,7 +22,10 @@ mongoose.connect('mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.
 if (error) console.error (error);
 else console.log ('mongo connected')
 
-})
+});
+
+var url = "localhost:3000"; // local
+//var url - "mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com:53732/heroku_xqz0gvn1" // dev
 
 var RSchema = new mongoose.Schema ({
 	name: String,

@@ -33,12 +33,10 @@
 
 
 <input id="firstname" type="text" name="firstname"></input>
-
-
 <button id="submit" type="button" class="btn btn-blue">SUBMIT</button>
-
-
 <script>
+
+var url = "http//:localhost:3000" // local
 
   console.log("ouch");
 
@@ -49,7 +47,7 @@
     };
     console.log('ouch again!');
 
-    $.post('http://localhost:3000/firstname', submit, function(err, res){
+    $.post(url+'/firstname', submit, function(err, res){
       submit
    });
 
