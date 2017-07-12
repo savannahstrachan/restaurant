@@ -1,72 +1,106 @@
-const express = require('express')   //naming variables basically
-const app = express()  
-const port = 3000 
-const bodyParser = require('body-parser')
+const express = require('express');  //naming variables basically
+const app = express();
+const port = 3000 ;
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-// var Schema = mongoose.Schema;
-
-// var RestaurantSchema = new Schema ({
-
-// 	name: String,
-// 	hunger: Number,
-// 	price: Number,
-// 	alcohol: Boolean,
-// 	Carryout: Boolean,
-// 	fancy: Number,
-// 	ID: Number
-// });
-
-// var restaurants = mongoose.model('Restaurants', RestaurantSchema);
-
-mongoose.connect('mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com:53732/heroku_xqz0gvn1', function(error){
-
-if (error) console.error (error);
-else console.log ('mongo connected');
-
-});
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.post('mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com:53732/heroku_xqz0gvn1', function (req, res){
-	});
+app.listen(port, function(err) {  
+  if (err) {
+    return console.log('something bad happened', err)
+  }
 
-// var restaurant = new Restaurant();
+  console.log(`Magic is happening on ${port}`)
+});
 
-// 	restaurant = {
-// 	"name": "Juan's Flying Burrito",
-// 	"hunger": 1,
-// 	"price": 1,
-// 	"alcohol": true,
-// 	"carryout": true,
-// 	"fancy": 1,
-// 	"ID": 1
+mongoose.connect('mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com:53732/heroku_xqz0gvn1', function(error){
 
-// 	};
+if (error) console.error (error);
+else console.log ('mongo connected')
 
-// restaurant.save(function(err, restaurants){
-// 		console.log(restaurant);
-// 		if (err)
-// 				res.send(err);
-// 		else
-// 				res.send("Restaurant added!");
+})
 
-// 	
+var RSchema = new mongoose.Schema ({
+	name: String,
+	hunger: Number,
+	price: Number,
+	alcohol: Boolean,
+	Carryout: Boolean,
+	fancy: Number,
+	ID: Number
+},{ collection: "restaurants"}
+);
 
-// restaruants.get(function (req, res){
+// var FSchema = mongoose.Schema ({
+// 	firstname: String,
+// }, {collection: "names"}
+// );
+
+var Restaurants = mongoose.model('restaurants', RSchema)
+
+// TEST of post
+// var Firstname = mongoose.model('names', FSchema)
 
 
-// }
-
-// Todo.find(function (err, todos){
-
-// 	res.json(200, todos);
+// app.post('/firstname', function (req, res){
+// 	console.log("/firstname endpoint getting hit");
+// 	var firstname = new Firstname(req.body);
+		
+// 		console.log(firstname);
+// 		firstname.save(function (err){
+// 			res.send(firstname);
+// 		});
 
 // });
 
-// app.post('___', function (req, res){
+//  app.get('/restaurants', function (req, res){
+
+//  	Restaurant.find(function(err, restaurants){
+//  		if(err){
+//  			console.log(err)
+//  		}else{
+//  			console.log(restaurants)}
+//  	});
+//  });
+
+
+// app.get('/firstname', function (req, res){
+// 	res.json(200, {msg: 'Ok'});
+// })
+
+// app.get('/firstname', function (req, res){
+// 	Firstname.find(function (err, firstname){
+// 		res.json(200, firstname);
+// 	});
+// });
+console.log('Hello World');
+
+// app.get('/todo-app', function(request, response) {  
+// 	Todo.find({},function(err,todo){
+// 		if(err){
+// 			console.log(err)
+// 		}else{
+// 			console.log(todo);
+// 		}
+// 	});
+// });
+
+app.get('/restaurants', function(req, res){
+	Restaurants.find({}, function(err, restaurants){
+		if(err){
+			console.log(err);
+		}else{
+			console.log(restaurants);
+			console.log('Hitting?');
+			res.send(restaurants);
+		}
+	});
+});
+
+
 
 // 	var restaurant = new Restaurant();
 
@@ -161,19 +195,6 @@ app.post('mongodb://heroku_xqz0gvn1:751m26uu1hjnf4otua908tr8fa@ds153732.mlab.com
 // 	"ID": 6,
 // }
 // ];
-
-
-app.listen(port, function(err) {  
-  if (err) {
-    return console.log('something bad happened', err)
-  }
-
-  console.log(`Magic is happening on ${port}`)
-});
-
-
- 
-
 
 
 

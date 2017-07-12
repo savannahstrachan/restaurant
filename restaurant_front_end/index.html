@@ -8,30 +8,17 @@
  	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-       <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
-  <script>
-  $( function() {
-    $( "#accordion" ).accordion();
-  } );
-  </script>
-
-
 
 </head>
 
 <body>
 
 
-<h1>QuickEats</h1>
+<!-- <h1>QuickEats</h1>
 <h2>Which of these categories is most important?</h2>
 
 <div id="carryout"><h3>Carryout</h3>
@@ -42,7 +29,41 @@
 <div id="price"><p>Price</p></div>
 <div id="hunger"><p>Hunger</p></div>
 <div id="fancy"><p>Fancy Pants</p></div>
-<div id="alcohol"><p>Alcohol</p></div>
+<div id="alcohol"><p>Alcohol</p></div> -->
+
+
+<input id="firstname" type="text" name="firstname"></input>
+
+
+<button id="submit" type="button" class="btn btn-blue">SUBMIT</button>
+
+
+<script>
+
+  console.log("ouch");
+
+  $('#submit').click(function(){
+
+   var submit = {
+   "firstname" : $("#firstname").val(),
+    };
+    console.log('ouch again!');
+
+    $.post('http://localhost:3000/firstname', submit, function(err, res){
+      submit
+   });
+
+  });
+
+  // $.get('http://localhost:3000/restaurants', function(err, res){
+  //   restaurants.find({}, function (err, res){
+  //     response.send(restaurants);
+  //   })
+
+
+  // })
+
+  </script>
 
 
 
@@ -54,37 +75,37 @@
 
 
 
-
+<!-- 
     <div id="all-restaurants">
 
 
     </div>
     <script>
     
-    $.get('http://localhost:3000/get-all-restaurants', function(data){ //ok so this asks your .js file for the thing in it that's named, in this case "all-restaurants"
+    // $.get('http://localhost:3000/get-all-restaurants', function(data){ //ok so this asks your .js file for the thing in it that's named, in this case "all-restaurants"
         
-    // $('#all-restaurants').append(JSON.stringify(data));
+    // // $('#all-restaurants').append(JSON.stringify(data));
 
 
 
-    var element = ""; // make a new variable
+    // var element = ""; // make a new variable
 
-    for( var i=0; i < data.length; i++){
-        element += "<h1>"+data[i].name+"</h1>"; //loop tells dom what to do with new variable
+    // for( var i=0; i < data.length; i++){
+    //     element += "<h1>"+data[i].name+"</h1>"; //loop tells dom what to do with new variable
 
-    }
+    // }
 
-    $("#all-restaurants").append(element); // add the html items to the thing already doing
+    // $("#all-restaurants").append(element); // add the html items to the thing already doing
 
-        console.log(element); // shows up in terminal
+    //     console.log(element); // shows up in terminal
 
 
     // // $.get('http:localhost:3000/get-rest-loop',
     // //     
     // //     var el ="<h1>" + AllRestaurants[].name;
     // );
-});
-    </script>
+
+    </script> -->
 
 
 
